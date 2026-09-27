@@ -3,7 +3,7 @@ import torch
 
 def evaluate(model, dataloader, device):
 
-    model.eval().to(device)
+    model.eval()
 
     with torch.no_grad():
 
