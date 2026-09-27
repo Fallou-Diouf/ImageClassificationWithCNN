@@ -4,7 +4,7 @@ import torch.optim as optim
 
 import matplotlib.pyplot as plt
 from model import CNN
-from dataset import train_loader, val_loader
+from dataset import train_loader, val_loader, test_loader
 from evaluate import evaluate
 
 device = torch.device(
@@ -46,9 +46,9 @@ for epoch in range(epochs):
         optimizer.step()
 
     train_accuracy = evaluate(
-    model,
-    train_loader,
-    device
+        model,
+        train_loader,
+        device
     )
 
     val_accuracy = evaluate(
@@ -63,6 +63,13 @@ for epoch in range(epochs):
     print(
     f"Epoch {epoch + 1}/{epochs} | " f"Train Acc: {train_accuracy:.4f} | " f"Val Acc: {val_accuracy:.4f}"
     )
+
+test_accuracy = evaluate(
+        model,
+        test_loader,
+        device
+    )
+print(f"Test Accuracy: {test_accuracy:.4f}")
 
 epochs_range = range(1, epochs + 1)
 
